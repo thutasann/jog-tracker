@@ -9,6 +9,7 @@ This is the world's simplest exercise tracker - you just push to GitHub after jo
 ### 1. Initial Setup (One time only)
 - Fork/clone this repo
 - Replace `[YOUR_USERNAME]` in README.md with your GitHub username
+- Run `npm install` to install type definitions
 - Push to GitHub
 
 ### 2. Daily Routine
@@ -46,16 +47,22 @@ That's it! No manual logging needed.
 
 ```
 exercise_streak/
-├── README.md           # Your streak dashboard with live stats
-├── exercises.json      # Auto-updated exercise log
-├── streak.json         # Current streak data
+├── README.md              # Your streak dashboard with live stats
+├── exercises.json         # Auto-updated exercise log
+├── streak.json           # Current streak data
+├── package.json          # Node.js project configuration
+├── tsconfig.json         # TypeScript config for type checking
 ├── .github/workflows/
-│   ├── auto-jog.yml    # Logs jog on every push
-│   ├── daily-check.yml # Creates reminder if no push
+│   ├── auto-jog.yml      # Logs jog on every push
+│   ├── daily-check.yml   # Creates reminder if no push
 │   └── close-reminder.yml # Closes issues when you push
 └── scripts/
-    ├── update_streak.py   # Calculates streaks
-    └── update_readme.py   # Updates README stats
+    ├── add-exercise.js   # Adds today's exercise
+    ├── update-streak.js  # Calculates streaks
+    ├── update-readme.js  # Updates README stats
+    ├── utils.js          # Shared utility functions
+    ├── types.js          # JSDoc type definitions
+    └── test.js           # Test all scripts
 ```
 
 ## 🎯 The Rules
@@ -124,19 +131,54 @@ Remember why you started:
 
 Your health is your most important feature. Don't let it become legacy code!
 
+## 🛠️ Development
+
+### Tech Stack
+- **Node.js 20+** with ES Modules
+- **JSDoc** for type annotations
+- **TypeScript** for type checking (dev only)
+- **GitHub Actions** for automation
+
+### Type Safety
+All scripts use `@ts-check` and JSDoc annotations for type safety:
+```javascript
+// @ts-check
+/** @typedef {import('./types.js').Exercise} Exercise */
+```
+
+### Running Scripts Locally
+```bash
+# Install dependencies
+npm install
+
+# Run type checking
+npm run type-check
+
+# Test all scripts
+npm test
+
+# Run individual scripts
+node scripts/add-exercise.js
+node scripts/update-streak.js
+node scripts/update-readme.js
+```
+
 ## 🐛 Troubleshooting
 
 **Actions not running?**
 - Check Actions are enabled in repo settings
 - Verify you're pushing to main/master branch
+- Check Node.js version in workflows (requires 20+)
 
 **Streak not updating?**
 - Wait a few minutes for Actions to complete
 - Check Actions tab for any errors
+- Run `npm test` locally to debug
 
 **No reminder issues?**
 - Check if you have issues enabled
 - Verify the schedule in daily-check.yml
+- Check permissions in workflow files
 
 ---
 
