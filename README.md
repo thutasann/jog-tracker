@@ -28,20 +28,6 @@ After 3 years of coding and heart rate issues, I'm jogging every day. This repo 
 - [ ] 100 days 🌳
 - [ ] 365 days 🏆
 
-## 🛠️ Tech Stack
-
-- **Node.js** (ES Modules) - All scripts written in pure JavaScript
-- **JSDoc + TypeScript** - Type safety without compilation
-- **GitHub Actions** - Automated tracking and reminders
-
-## 🚀 Features
-
-- ✅ **Auto-logging** - Push = Jog logged automatically
-- 📊 **Streak tracking** - Calculates consecutive days
-- 🤖 **Daily reminders** - Creates GitHub issues if you skip
-- 🎯 **Milestone tracking** - Visual progress indicators
-- 📝 **Type-safe** - JSDoc annotations with TypeScript checking
-
 ---
 
 **Just push to master after jogging - GitHub Actions handles the rest!**
