@@ -10,16 +10,16 @@ After 3 years of coding and heart rate issues, I'm jogging every day. This repo 
 ## 📊 Current Stats
 
 ```
-🔥 Current Streak: 0 days
-🏃 Total Jogging Days: 0
-📅 Last Jog: Never
+🔥 Current Streak: 1 days
+🏃 Total Jogging Days: 1
+📅 Last Jog: 2025-09-20
 ```
 
 ## 📝 Jogging Log
 
 | Date | Status |
 |------|--------|
-| <!-- Auto-updated --> |
+| 2025-09-20 | ✅ Jogged |
 
 ## 🏆 Milestones
 

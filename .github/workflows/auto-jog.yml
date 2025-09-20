@@ -18,48 +18,20 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 2
     
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    
     - name: Auto Log Today's Jog
       run: |
-        TODAY=$(date +%Y-%m-%d)
-        
-        # Check if already logged today
-        if grep -q "\"$TODAY\"" exercises.json 2>/dev/null; then
-          echo "Already logged for today"
-          exit 0
-        fi
-        
-        # Add today's jog
-        if [ -f exercises.json ]; then
-          # Remove last bracket and add new entry
-          sed -i '$ d' exercises.json
-          if grep -q '\[' exercises.json; then
-            echo "    }," >> exercises.json
-          fi
-          echo "    {" >> exercises.json
-          echo "      \"date\": \"$TODAY\"," >> exercises.json
-          echo "      \"activity\": \"Jogging\"" >> exercises.json
-          echo "    }" >> exercises.json
-          echo "  ]" >> exercises.json
-          echo "}" >> exercises.json
-        else
-          # Create new file
-          echo "{" > exercises.json
-          echo "  \"exercises\": [" >> exercises.json
-          echo "    {" >> exercises.json
-          echo "      \"date\": \"$TODAY\"," >> exercises.json
-          echo "      \"activity\": \"Jogging\"" >> exercises.json
-          echo "    }" >> exercises.json
-          echo "  ]" >> exercises.json
-          echo "}" >> exercises.json
-        fi
+        node scripts/add-exercise.js
     
     - name: Update Streak
-      run: |
-        python3 scripts/update_streak.py
+      run: node scripts/update-streak.js
     
     - name: Update README
-      run: |
-        python3 scripts/update_readme.py
+      run: node scripts/update-readme.js
     
     - name: Commit Changes
       run: |

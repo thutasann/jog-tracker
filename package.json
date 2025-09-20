@@ -1,0 +1,22 @@
+{
+  "name": "exercise-streak",
+  "version": "1.0.0",
+  "description": "Track daily jogging streak with GitHub commits",
+  "type": "module",
+  "scripts": {
+    "update-streak": "node scripts/update-streak.js",
+    "update-readme": "node scripts/update-readme.js",
+    "test": "node scripts/test.js",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": ["exercise", "streak", "health", "jogging"],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
