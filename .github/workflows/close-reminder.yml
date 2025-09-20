@@ -4,6 +4,9 @@ on:
   push:
     branches: [main, master]
 
+permissions:
+  issues: write
+
 jobs:
   close-reminder:
     runs-on: ubuntu-latest

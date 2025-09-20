@@ -6,6 +6,10 @@ on:
     - cron: '0 20 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   check-if-jogged:
     runs-on: ubuntu-latest
