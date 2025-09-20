@@ -24,7 +24,7 @@ After 3 years of coding and heart rate issues, I'm jogging every day. This repo 
 ## 🏆 Milestones
 
 - [ ] 7 days 🌱
-- [ ] 30 days 🌿  
+- [ ] 30 days 🌿
 - [ ] 100 days 🌳
 - [ ] 365 days 🏆
 
