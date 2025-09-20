@@ -4,6 +4,7 @@
   "description": "Track daily jogging streak with GitHub commits",
   "type": "module",
   "scripts": {
+    "log": "node scripts/log-exercise.js",
     "update-streak": "node scripts/update-streak.js",
     "update-readme": "node scripts/update-readme.js",
     "test": "node scripts/test.js",

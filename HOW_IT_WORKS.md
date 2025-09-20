@@ -12,19 +12,23 @@ This is the world's simplest exercise tracker - you just push to GitHub after jo
 - Run `npm install` to install type definitions
 - Push to GitHub
 
-### 2. Daily Routine
-After jogging each day:
-```bash
-# Make ANY small change (even add a space)
-echo " " >> README.md
+### 2. Daily Routine - SUPER SIMPLE!
 
-# Commit and push
-git add .
-git commit -m "jogged today"
-git push
+After jogging, just run ONE command:
+```bash
+npm run log
 ```
 
-That's it! No manual logging needed.
+Or even simpler (after one-time setup):
+```bash
+git jog
+```
+
+That's it! This automatically:
+- Logs today's exercise in exercises.json
+- Creates a meaningful commit ("🏃 Jogged on YYYY-MM-DD")
+- Pushes to GitHub
+- If already logged today, creates empty commit (push multiple times!)
 
 ## 🤖 What Happens Automatically
 
@@ -57,7 +61,7 @@ exercise_streak/
 │   ├── daily-check.yml   # Creates reminder if no push
 │   └── close-reminder.yml # Closes issues when you push
 └── scripts/
-    ├── add-exercise.js   # Adds today's exercise
+    ├── log-exercise.js   # One-command daily logging
     ├── update-streak.js  # Calculates streaks
     ├── update-readme.js  # Updates README stats
     ├── utils.js          # Shared utility functions
@@ -74,29 +78,36 @@ exercise_streak/
 
 ## 💡 Pro Tips
 
-### Easy Push Methods
+### One-Time Setup for Ultimate Simplicity
 
-**Method 1: Command Line**
+Run this once:
 ```bash
-# After jogging
-git commit --allow-empty -m "🏃 jogged today"
-git push
+./scripts/setup-alias.sh
 ```
 
-**Method 2: GitHub Web**
-1. Go to any file on GitHub.com
-2. Click edit (pencil icon)
-3. Add a space anywhere
-4. Commit directly to main
-
-**Method 3: Create Alias**
+Then forever after, just type:
 ```bash
-# Add to your .bashrc/.zshrc
-alias jogged='git commit --allow-empty -m "🏃 jogged today" && git push'
-
-# Then just type:
-jogged
+git jog
 ```
+
+### Manual Options
+
+**Option 1: Use npm**
+```bash
+npm run log
+```
+
+**Option 2: Direct script**
+```bash
+node scripts/log-exercise.js
+```
+
+### No More Thinking!
+The script handles everything:
+- ✅ Adds exercise entry if not logged
+- ✅ Creates empty commit if already logged
+- ✅ Always lets you push
+- ✅ Meaningful commit messages
 
 ## 🔧 Customization
 
