@@ -1,0 +1,46 @@
+name: Exercise Reminder
+
+on:
+  schedule:
+    # Run at 8 PM UTC daily (adjust to your timezone)
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-exercise:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    
+    - name: Check Today's Exercise
+      id: check
+      run: |
+        python scripts/check_today.py
+    
+    - name: Create Issue if No Exercise
+      if: steps.check.outputs.exercised == 'false'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const today = new Date().toISOString().split('T')[0];
+          const title = `🚨 Exercise Reminder - ${today}`;
+          const body = `Hey! It looks like you haven't logged your exercise for today yet. 
+          
+          Remember: Your health is important! Even a 15-minute walk counts. 💪
+          
+          Don't break the streak! 🔥`;
+          
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: title,
+            body: body,
+            labels: ['reminder', 'exercise']
+          });
