@@ -1,0 +1,160 @@
+name: Daily Jogging Reminder
+
+on:
+  schedule:
+    # Runs at 8 PM UTC every day (adjust to your timezone)
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-if-jogged:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Check Today's Push
+      id: check
+      run: |
+        # Get today's date
+        TODAY=$(date +%Y-%m-%d)
+        
+        # Check if there was a push today
+        LAST_PUSH=$(git log -1 --format=%cd --date=short)
+        
+        if [ "$LAST_PUSH" = "$TODAY" ]; then
+          echo "pushed_today=true" >> $GITHUB_OUTPUT
+          echo "✅ You pushed today!"
+        else
+          echo "pushed_today=false" >> $GITHUB_OUTPUT
+          echo "❌ No push today"
+        fi
+        
+        # Get streak info
+        STREAK=$(jq -r '.current_streak' streak.json 2>/dev/null || echo "0")
+        echo "current_streak=$STREAK" >> $GITHUB_OUTPUT
+    
+    - name: Create Reminder Issue
+      if: steps.check.outputs.pushed_today == 'false'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const today = new Date().toISOString().split('T')[0];
+          const streak = '${{ steps.check.outputs.current_streak }}';
+          
+          // Random motivational messages
+          const titles = [
+            "🏃‍♂️ Your legs are calling you!",
+            "🚨 Streak Alert: Time to jog!",
+            "💔 Don't break the streak!",
+            "🦵 Those legs won't move themselves!",
+            "⏰ Tick tock, it's jogging o'clock!",
+            "🔥 Keep the fire burning!",
+            "👟 Your running shoes miss you!",
+            "💪 3 years of coding, 30 mins of jogging!"
+          ];
+          
+          const excuses = [
+            "But my code has bugs! 🐛",
+            "Just one more commit... 💻",
+            "It's raining pixels! 🌧️",
+            "My keyboard needs me! ⌨️",
+            "Stack Overflow is down! 😱",
+            "The WiFi is too good today! 📶",
+            "My IDE won't let me go! 🔒",
+            "Debugging > Jogging? 🤔"
+          ];
+          
+          const motivations = [
+            "Your heart will thank you! ❤️",
+            "Endorphins > Syntax errors! 🎯",
+            "Fresh air = Fresh ideas! 💡",
+            "Movement is medicine! 💊",
+            "Your future self is cheering! 🎉",
+            "Health is the best feature! ✨",
+            "Cardio compiles creativity! 🧠",
+            "Run from bugs, literally! 🏃"
+          ];
+          
+          const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+          const randomExcuse = excuses[Math.floor(Math.random() * excuses.length)];
+          const randomMotivation = motivations[Math.floor(Math.random() * motivations.length)];
+          
+          const title = `${randomTitle} - ${today}`;
+          
+          const body = `# 🚨 JOGGING REMINDER 🚨
+          
+          Hey developer! Your daily jog is waiting! 
+          
+          ## 📊 Current Status
+          - **Current Streak**: ${streak} days 🔥
+          - **Last Push**: Not today 😢
+          - **Status**: Missing in Action 🏃‍♂️💨
+          
+          ## 🎭 I know what you're thinking...
+          > "${randomExcuse}"
+          
+          ## 💡 But remember...
+          **${randomMotivation}**
+          
+          ## 🎯 Your Mission
+          1. Close this issue
+          2. Put on those shoes 👟
+          3. Jog for at least 20 minutes 🏃
+          4. Push to GitHub when done ✅
+          
+          ## 💪 Motivational Quote
+          > "The only bad workout is the one that didn't happen."
+          > 
+          > Also: "Sitting is the new smoking" 🚬❌
+          
+          ## 🏆 What's at stake?
+          ${streak > 0 ? `Your **${streak} day streak** is on the line! Don't let it go to zero! 😱` : 'Time to start building that streak! Day 1 begins now! 🌟'}
+          
+          ---
+          
+          <details>
+          <summary>🤖 Still procrastinating? Click here...</summary>
+          
+          ### Fine, here's the deal:
+          - Even 15 minutes counts
+          - Walking fast is still jogging
+          - You can jog while thinking about code
+          - Your heart rate monitor will love you
+          - This issue will haunt you until you jog
+          
+          ### Remember why you started:
+          **"After 3 years of coding and heart rate issues..."** 
+          
+          Don't let another day pass! Your health > Your code!
+          
+          </details>
+          
+          ---
+          
+          ⏰ **This issue will auto-close when you push after jogging!**
+          
+          Now go! Your body is your most important hardware! 🖥️❤️`;
+          
+          // Check if issue already exists for today
+          const issues = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'open',
+            labels: 'jogging-reminder'
+          });
+          
+          const todayIssue = issues.data.find(issue => issue.title.includes(today));
+          
+          if (!todayIssue) {
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+              labels: ['jogging-reminder', 'health', 'daily']
+            });
+          }

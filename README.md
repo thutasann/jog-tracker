@@ -1,117 +1,33 @@
-# =™ Exercise Streak Tracker
+# üèÉ Daily Jogging Streak
 
-> *"Health is wealth" - Tracking my daily exercise journey to combat the programmer's curse of sitting too long!*
+![Jogging Streak](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2F[thutasann]%2Fexercise_streak%2Fmain%2Fstreak.json&query=%24.current_streak&label=Current%20Streak&color=brightgreen&suffix=%20days)
+![Total Days](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2F[thutasann]%2Fexercise_streak%2Fmain%2Fstreak.json&query=%24.total_days&label=Total%20Jogging%20Days&color=blue)
 
-![Exercise Streak](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2F[YOUR_USERNAME]%2Fexercise_streak%2Fmain%2Fstreak.json&query=%24.current_streak&label=Current%20Streak&color=brightgreen&suffix=%20days)
-![Total Days](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2F[YOUR_USERNAME]%2Fexercise_streak%2Fmain%2Fstreak.json&query=%24.total_days&label=Total%20Exercise%20Days&color=blue)
-![Last Updated](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2F[YOUR_USERNAME]%2Fexercise_streak%2Fmain%2Fstreak.json&query=%24.last_updated&label=Last%20Exercise&color=orange)
+## üéØ Mission
 
-## <Ø Mission
+After 3 years of coding and heart rate issues, I'm jogging every day. This repo tracks my streak automatically - I just push to GitHub after each jog!
 
-After 3 years of intense coding and developing some heart rate issues, I've decided to take my health seriously. This repo tracks my daily exercise commitment - because what better way for a developer to stay accountable than with GitHub commits?
-
-## =  Current Stats
+## üìä Current Stats
 
 ```
-=% Current Streak: Loading...
-=™ Total Exercise Days: Loading...
-=≈ Last Exercise: Loading...
-<Ø Goal: 365 days of movement!
+üî• Current Streak: 0 days
+üèÉ Total Jogging Days: 0
+üìÖ Last Jog: Never
 ```
 
-## =› Exercise Log
+## üìù Jogging Log
 
-<!-- Exercise log will be automatically updated -->
-<!-- DO NOT EDIT BELOW THIS LINE -->
-### Recent Activities
+| Date | Status |
+|------|--------|
+| <!-- Auto-updated --> |
 
-| Date | Activity | Duration | Notes |
-|------|----------|----------|-------|
-| <!-- Logs will be inserted here --> |
+## üèÜ Milestones
 
-<!-- DO NOT EDIT ABOVE THIS LINE -->
-
-## <√B Activities I Track
-
-- =∂ Walking (minimum 30 minutes)
-- <√ Running/Jogging
-- <À Strength Training
-- >ÿ Yoga/Stretching
-- =¥ Cycling
-- <  Swimming
-- =É Dancing
-- >J Boxing/Martial Arts
-
-## > How It Works
-
-1. **Daily Logging**: I update `exercises.json` with my daily activity
-2. **Automated Tracking**: GitHub Actions automatically:
-   - Updates streak counters
-   - Generates activity heatmap
-   - Updates README badges
-   - Checks for missed days
-3. **Visualizations**: Monthly/yearly heatmaps show consistency
-
-## =» Progress Visualization
-
-### Monthly Heatmap
-<!-- Heatmap will be auto-generated -->
-```
-Coming soon...
-```
-
-### Activity Distribution
-<!-- Chart will be auto-generated -->
-```
-Coming soon...
-```
-
-## <ñ Milestones
-
-- [ ] 7 days streak <1
-- [ ] 30 days streak <?
-- [ ] 100 days streak <3
-- [ ] 365 days streak <∆
-
-## =° Motivation
-
-> "The body achieves what the mind believes"
-
-Remember: It's not about perfection, it's about consistency. Every day of movement counts!
-
-## =‡ Setup (For Fellow Devs)
-
-Want to create your own exercise tracker? Here's how:
-
-1. Fork this repo
-2. Update `[YOUR_USERNAME]` in badge URLs
-3. Create `exercises.json` with:
-```json
-{
-  "exercises": []
-}
-```
-4. Set up GitHub Actions (already configured!)
-5. Start logging your exercises!
-
-## =À Log Format
-
-Add your daily exercise to `exercises.json`:
-```json
-{
-  "date": "2024-01-20",
-  "activity": "Running",
-  "duration": "30 minutes",
-  "notes": "Felt great! Morning run in the park"
-}
-```
+- [ ] 7 days üå±
+- [ ] 30 days üåø  
+- [ ] 100 days üå≥
+- [ ] 365 days üèÜ
 
 ---
 
-<div align="center">
-  
-**Remember: Your health is your most important feature. Don't let it become legacy code!**
-
-*Started tracking: January 2024*
-
-</div>
+**Just push to master after jogging - GitHub Actions handles the rest!**

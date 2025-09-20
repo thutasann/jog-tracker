@@ -1,84 +1,64 @@
 #!/usr/bin/env python3
 import json
 import re
-from datetime import datetime
 
-def load_json(filename):
+def main():
+    # Load data
     try:
-        with open(filename, 'r') as f:
-            return json.load(f)
+        with open('streak.json', 'r') as f:
+            streak = json.load(f)
     except:
-        return {}
-
-def update_readme():
-    # Load all data
-    exercises_data = load_json('exercises.json')
-    streak_data = load_json('streak.json')
-    viz_data = load_json('visualizations.json')
+        streak = {'current_streak': 0, 'total_days': 0, 'last_updated': 'Never'}
     
-    exercises = exercises_data.get('exercises', [])
+    try:
+        with open('exercises.json', 'r') as f:
+            data = json.load(f)
+            exercises = data.get('exercises', [])
+    except:
+        exercises = []
     
-    # Read current README
+    # Read README
     with open('README.md', 'r') as f:
         readme = f.read()
     
-    # Update stats section
-    stats_section = f"""```
-🔥 Current Streak: {streak_data.get('current_streak', 0)} days
-💪 Total Exercise Days: {streak_data.get('total_days', 0)}
-📅 Last Exercise: {streak_data.get('last_updated', 'Never')}
-🎯 Goal: 365 days of movement!
+    # Update stats
+    stats = f"""```
+🔥 Current Streak: {streak['current_streak']} days
+🏃 Total Jogging Days: {streak['total_days']}
+📅 Last Jog: {streak['last_updated']}
 ```"""
     
-    readme = re.sub(r'```\n🔥 Current Streak:.*?```', stats_section, readme, flags=re.DOTALL)
+    readme = re.sub(r'```\n🔥 Current Streak:.*?```', stats, readme, flags=re.DOTALL)
     
-    # Update exercise log (last 10 entries)
-    recent_exercises = sorted(exercises, key=lambda x: x['date'], reverse=True)[:10]
+    # Update log (last 10 jogs)
+    recent = sorted(exercises, key=lambda x: x['date'], reverse=True)[:10]
+    log_rows = [f"| {e['date']} | ✅ Jogged |" for e in recent]
     
-    log_rows = []
-    for exercise in recent_exercises:
-        log_rows.append(f"| {exercise['date']} | {exercise['activity']} | {exercise['duration']} | {exercise.get('notes', '')} |")
-    
-    log_section = "\n".join(log_rows) if log_rows else "| No exercises logged yet |"
-    
-    # Update the exercise log table
-    pattern = r'(\| Date \| Activity \| Duration \| Notes \|\n\|------\|----------|----------|-------|\n).*?(\n<!-- DO NOT EDIT ABOVE THIS LINE -->)'
-    replacement = f"\\1{log_section}\\2"
-    readme = re.sub(pattern, replacement, readme, flags=re.DOTALL)
-    
-    # Update heatmap if available
-    if viz_data.get('heatmap'):
-        heatmap_section = f"```\n{viz_data['heatmap']}\n```"
-        readme = re.sub(r'### Monthly Heatmap\n<!-- Heatmap will be auto-generated -->\n```\n.*?```', 
-                       f"### Monthly Heatmap\n<!-- Heatmap will be auto-generated -->\n{heatmap_section}", 
-                       readme, flags=re.DOTALL)
+    if log_rows:
+        log_section = '\n'.join(log_rows)
+        pattern = r'(\| Date \| Status \|\n\|------\|--------\|\n).*?(\n\n##)'
+        readme = re.sub(pattern, f"\\1{log_section}\\2", readme, flags=re.DOTALL)
     
     # Update milestones
-    current_streak = streak_data.get('current_streak', 0)
-    milestones = [
-        (7, "7 days streak 🌱"),
-        (30, "30 days streak 🌿"),
-        (100, "100 days streak 🌳"),
-        (365, "365 days streak 🏆")
-    ]
+    current = streak['current_streak']
+    milestones = [(7, "7 days 🌱"), (30, "30 days 🌿"), (100, "100 days 🌳"), (365, "365 days 🏆")]
     
-    milestone_lines = []
+    milestone_text = ""
     for days, text in milestones:
-        if current_streak >= days:
-            milestone_lines.append(f"- [x] {text}")
+        if current >= days:
+            milestone_text += f"- [x] {text}\n"
         else:
-            milestone_lines.append(f"- [ ] {text}")
+            milestone_text += f"- [ ] {text}\n"
     
-    milestone_section = "\n".join(milestone_lines)
-    readme = re.sub(r'## 🎖️ Milestones\n\n.*?(?=\n##)', 
-                   f"## 🎖️ Milestones\n\n{milestone_section}\n", 
-                   readme, flags=re.DOTALL)
+    readme = re.sub(r'## 🏆 Milestones\n\n.*?(?=\n---)', 
+                    f"## 🏆 Milestones\n\n{milestone_text}", 
+                    readme, flags=re.DOTALL)
     
-    # Write updated README
+    # Save README
     with open('README.md', 'w') as f:
         f.write(readme)
     
-    print("✅ Updated README.md")
+    print("✅ README updated")
 
 if __name__ == "__main__":
-    update_readme()
+    main()

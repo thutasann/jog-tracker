@@ -1,0 +1,71 @@
+name: Auto Log Jogging
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  log-jog:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+    
+    - name: Auto Log Today's Jog
+      run: |
+        TODAY=$(date +%Y-%m-%d)
+        
+        # Check if already logged today
+        if grep -q "\"$TODAY\"" exercises.json 2>/dev/null; then
+          echo "Already logged for today"
+          exit 0
+        fi
+        
+        # Add today's jog
+        if [ -f exercises.json ]; then
+          # Remove last bracket and add new entry
+          sed -i '$ d' exercises.json
+          if grep -q '\[' exercises.json; then
+            echo "    }," >> exercises.json
+          fi
+          echo "    {" >> exercises.json
+          echo "      \"date\": \"$TODAY\"," >> exercises.json
+          echo "      \"activity\": \"Jogging\"" >> exercises.json
+          echo "    }" >> exercises.json
+          echo "  ]" >> exercises.json
+          echo "}" >> exercises.json
+        else
+          # Create new file
+          echo "{" > exercises.json
+          echo "  \"exercises\": [" >> exercises.json
+          echo "    {" >> exercises.json
+          echo "      \"date\": \"$TODAY\"," >> exercises.json
+          echo "      \"activity\": \"Jogging\"" >> exercises.json
+          echo "    }" >> exercises.json
+          echo "  ]" >> exercises.json
+          echo "}" >> exercises.json
+        fi
+    
+    - name: Update Streak
+      run: |
+        python3 scripts/update_streak.py
+    
+    - name: Update README
+      run: |
+        python3 scripts/update_readme.py
+    
+    - name: Commit Changes
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        
+        git add .
+        if git diff --staged --quiet; then
+          echo "No changes"
+        else
+          git commit -m "🏃 Jogged today! [skip ci]"
+          git push
+        fi

@@ -1,0 +1,55 @@
+name: Close Jogging Reminder
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  close-reminder:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Close Today's Reminder Issue
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const today = new Date().toISOString().split('T')[0];
+          
+          // Get open jogging reminder issues
+          const issues = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'open',
+            labels: 'jogging-reminder'
+          });
+          
+          // Find and close today's issue
+          for (const issue of issues.data) {
+            if (issue.title.includes(today)) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed'
+              });
+              
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `# 🎉 MISSION ACCOMPLISHED! 🎉
+                
+                You did it! You pushed, which means you jogged! 
+                
+                ## 🏆 Achievement Unlocked
+                ✅ Daily jog completed
+                ✅ Streak maintained
+                ✅ Heart happy
+                ✅ Code-life balance achieved
+                
+                Keep up the great work! See you tomorrow! 💪🏃‍♂️`
+              });
+              
+              console.log(`Closed reminder issue #${issue.number}`);
+            }
+          }
