@@ -157,10 +157,12 @@ function updateLogs(exercises, date, stravaId) {
     
     // Check if date already exists
     if (!content.includes(`### ${date}`)) {
-      content = content.replace(
-        '## Strava Activities\n\n',
-        `## Strava Activities\n\n${embedEntry}`
-      );
+      // Find the Strava Activities section and add embed after it
+      const stravaMatch = content.match(/(## Strava Activities\s*)/);
+      if (stravaMatch && stravaMatch?.index) {
+        const insertPosition = stravaMatch.index + stravaMatch[0].length;
+        content = content.slice(0, insertPosition) + '\n' + embedEntry + content.slice(insertPosition);
+      }
     }
   }
   
