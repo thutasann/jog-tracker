@@ -18,7 +18,3 @@ Check the detailed log: **[LOGS.md](logs/LOGS.md)**
 - [ ] 30 days 🌿
 - [ ] 100 days 🌳
 - [ ] 365 days 🏆
-
----
-
-**Just push to master after jogging - GitHub Actions handles the rest!**

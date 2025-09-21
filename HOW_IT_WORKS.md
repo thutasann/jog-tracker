@@ -19,24 +19,27 @@ npm run log
 ```
 
 That's it! This will:
-- **Prompt for date** (defaults to today - just press Enter)
-- Log exercise in exercises.json
-- **Prompt for optional Strava activity ID** (press Enter to skip)
-- Add Strava embed to logs/LOGS.md if provided
-- Update README.md with current streak stats
-- Create a meaningful commit ("🏃 Jogged on YYYY-MM-DD")
-- **Ask if you want to push to GitHub** (default: yes)
-- If already logged for that date, creates empty commit (push multiple times!)
+1. **Prompt for date** (defaults to today - just press Enter)
+2. **Prompt for optional Strava activity ID** (press Enter to skip)
+3. Automatically:
+   - Log exercise in exercises.json
+   - Update streak statistics in streak.json
+   - Update README.md with current streak stats
+   - Add entry to logs/LOGS.md table
+   - Add Strava embed if ID provided
+   - Commit all changes ("🏃 Jogged on YYYY-MM-DD")
+   - Push to GitHub automatically
+   - Create empty commit if already logged (push multiple times!)
 
 ## 🤖 What Happens Automatically
 
-### When You Run `npm run log` (Local Updates)
+### When You Run `npm run log` (Everything Automated)
 1. **Exercise Logging** - Adds entry to exercises.json for the date you specify
 2. **Streak Calculation** - Updates streak.json with current and total stats
 3. **README Update** - Updates stats and milestones in README.md
 4. **Logs Update** - Updates exercise table and adds Strava embeds in logs/LOGS.md
 5. **Git Commit** - Creates meaningful commit with exercise date
-6. **Optional Push** - Asks if you want to push to GitHub
+6. **Auto Push** - Automatically pushes to GitHub
 
 ### GitHub Actions (Daily Reminder Only)
 1. **Daily Check** - At 8 PM UTC, GitHub checks if you pushed today
@@ -61,9 +64,10 @@ exercise_streak/
 ├── .github/workflows/
 │   └── daily-check.yml   # Creates reminder if no push (8 PM UTC)
 └── scripts/
-    ├── log.js            # Unified script that handles everything
+    ├── log.js            # Main script that handles everything
     ├── utils.js          # Shared utility functions
-    └── types.js          # JSDoc type definitions
+    ├── types.js          # JSDoc type definitions
+    └── setup-alias.sh    # Optional: Setup 'jog' alias
 ```
 
 ## 🎯 The Rules
@@ -82,13 +86,13 @@ npm run log
 ```
 
 ### What It Does
-The unified script handles everything:
+The script handles everything automatically:
 - ✅ Prompts for date (defaults to today)
-- ✅ Logs exercise to exercises.json
 - ✅ Prompts for optional Strava activity ID
+- ✅ Logs exercise to exercises.json
 - ✅ Updates all files (README, LOGS, streak.json)
 - ✅ Creates meaningful commit
-- ✅ Asks if you want to push
+- ✅ Pushes to GitHub automatically
 - ✅ Creates empty commit if already logged for that date
 
 ### Advanced Usage
@@ -105,11 +109,7 @@ npm run log
 # When prompted for Strava ID: 15875620162
 ```
 
-**Skip push to GitHub:**
-```bash
-npm run log
-# When asked to push: n
-```
+The script now automatically pushes to GitHub, no need to confirm!
 
 ### Adding Strava Activities
 
@@ -193,7 +193,7 @@ npm run type-check
 # Test all scripts
 npm test
 
-# Run the unified logging script
+# Run the main logging script
 node scripts/log.js
 ```
 
