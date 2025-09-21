@@ -228,13 +228,10 @@ async function main() {
     
     console.log('✅ Committed changes');
     
-    // Ask if user wants to push
-    const shouldPush = await ask(rl, '\n📤 Push to GitHub? (y/n) [y]: ');
-    if (shouldPush.toLowerCase() !== 'n') {
-      console.log('🚀 Pushing to GitHub...');
-      execSync('git push', { stdio: 'inherit' });
-      console.log('\n🎉 Successfully pushed!');
-    }
+    // Automatically push
+    console.log('\n🚀 Pushing to GitHub...');
+    execSync('git push', { stdio: 'inherit' });
+    console.log('\n🎉 Successfully pushed!');
     
   } catch (error) {
     console.error('❌ Error:', error);
