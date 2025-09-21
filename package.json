@@ -4,14 +4,7 @@
   "description": "Track daily jogging streak with GitHub commits",
   "type": "module",
   "scripts": {
-    "log": "node scripts/log-exercise.js",
-    "add-strava": "node scripts/add-strava-embed.js",
-    "add-strava-date": "node scripts/add-strava-for-date.js",
-    "test-strava": "node scripts/test-strava.js",
-    "update-streak": "node scripts/update-streak.js",
-    "update-readme": "node scripts/update-readme.js",
-    "update-logs": "node scripts/update-logs.js",
-    "test": "node scripts/test.js",
+    "log": "node scripts/log.js",
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
