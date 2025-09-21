@@ -153,7 +153,8 @@ function updateLogs(exercises, date, stravaId) {
   
   // Add Strava embed if provided
   if (stravaId) {
-    const embedEntry = `### ${date}\n\`\`\`.html\n<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="${stravaId}" data-style="standard"></div><script src="https://strava-embeds.com/embed.js"></script>\n\`\`\`\n\n`;
+    const stravaLink = `https://www.strava.com/activities/${stravaId}`;
+    const embedEntry = `### ${date}\n[View on Strava](${stravaLink})\n\n\`\`\`.html\n<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="${stravaId}" data-style="standard"></div><script src="https://strava-embeds.com/embed.js"></script>\n\`\`\`\n\n`;
     
     // Check if date already exists
     if (!content.includes(`### ${date}`)) {
