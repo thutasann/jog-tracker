@@ -137,8 +137,18 @@ function updateLogs(exercises, date, stravaId) {
     .join('\n');
   
   if (logRows) {
-    const pattern = /([\|] Date [\|] Status [\|]\n[\|]------[\|]--------[\|]\n)([\s\S]*?)(\n\n## Strava Activities)/;
-    content = content.replace(pattern, `$1${logRows}$3`);
+    // Find the table header and replace everything up to Strava Activities section
+    const tableHeader = '| Date | Status |\n|------|--------|';
+    const stravaSection = '\n\n## Strava Activities';
+    
+    const headerIndex = content.indexOf(tableHeader);
+    const stravaIndex = content.indexOf(stravaSection);
+    
+    if (headerIndex !== -1 && stravaIndex !== -1) {
+      const beforeTable = content.substring(0, headerIndex + tableHeader.length);
+      const afterTable = content.substring(stravaIndex);
+      content = beforeTable + '\n' + logRows + afterTable;
+    }
   }
   
   // Add Strava embed if provided
