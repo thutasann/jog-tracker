@@ -31,7 +31,8 @@ function updateLog(content, exercises) {
     .join('\n');
 
   if (logRows) {
-    const pattern = /([\|] Date [\|] Status [\|]\n[\|]------[\|]--------[\|]\n)([\s\S]*?)(\n\n---)/;
+    // More specific pattern that stops at the Strava Activities section
+    const pattern = /([\|] Date [\|] Status [\|]\n[\|]------[\|]--------[\|]\n)([\s\S]*?)(\n\n## Strava Activities)/;
     return content.replace(pattern, `$1${logRows}$3`);
   }
 

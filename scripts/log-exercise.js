@@ -40,6 +40,10 @@ function main() {
     console.log(`✅ Added jogging for ${today}`);
   }
   
+  // Update logs table locally
+  console.log('\n📝 Updating logs...');
+  execSync('node scripts/update-logs.js', { stdio: 'inherit' });
+  
   // Ask for Strava activity embed
   console.log('\n💡 Optional: Add your Strava activity');
   const stravaResult = spawnSync('node', [join(__dirname, 'add-strava-embed.js')], { 
