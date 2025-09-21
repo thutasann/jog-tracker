@@ -39,7 +39,9 @@ function ask(rl, question) {
  * @returns {string}
  */
 function generateStravaEmbed(activityId) {
-  return `<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="${activityId}" data-style="standard"></div><script src="https://strava-embeds.com/embed.js"></script>`;
+  return `\`\`\`.html
+<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="${activityId}" data-style="standard"></div><script src="https://strava-embeds.com/embed.js"></script>
+\`\`\``;
 }
 
 /**
