@@ -8,11 +8,9 @@
 📅 Last Jog: 2025-09-20
 ```
 
-## 📝 Jogging Log
+## 📝 Exercise Log
 
-| Date | Status |
-|------|--------|
-| 2025-09-20 | ✅ Jogged |
+Check the detailed log: **[LOGS.md](logs/LOGS.md)**
 
 ## 🏆 Milestones
 

@@ -33,6 +33,9 @@ jobs:
     - name: Update README
       run: node scripts/update-readme.js
     
+    - name: Update Logs
+      run: node scripts/update-logs.js
+    
     - name: Commit Changes
       run: |
         git config --global user.name 'github-actions[bot]'

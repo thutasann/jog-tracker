@@ -8,7 +8,6 @@ This is the world's simplest exercise tracker - you just push to GitHub after jo
 
 ### 1. Initial Setup (One time only)
 - Fork/clone this repo
-- Replace `[YOUR_USERNAME]` in README.md with your GitHub username
 - Run `npm install` to install type definitions
 - Push to GitHub
 
@@ -26,6 +25,8 @@ git jog
 
 That's it! This automatically:
 - Logs today's exercise in exercises.json
+- **Prompts for optional Strava activity ID** (press Enter to skip)
+- Adds Strava embed to logs/LOGS.md if provided
 - Creates a meaningful commit ("🏃 Jogged on YYYY-MM-DD")
 - Pushes to GitHub
 - If already logged today, creates empty commit (push multiple times!)
@@ -56,17 +57,20 @@ exercise_streak/
 ├── streak.json           # Current streak data
 ├── package.json          # Node.js project configuration
 ├── tsconfig.json         # TypeScript config for type checking
+├── logs/
+│   └── LOGS.md           # Detailed exercise log with Strava embeds
 ├── .github/workflows/
 │   ├── auto-jog.yml      # Logs jog on every push
 │   ├── daily-check.yml   # Creates reminder if no push
 │   └── close-reminder.yml # Closes issues when you push
 └── scripts/
-    ├── log-exercise.js   # One-command daily logging
+    ├── log-exercise.js   # One-command daily logging (with Strava prompt)
+    ├── add-strava-embed.js # Add Strava activity embeds
     ├── update-streak.js  # Calculates streaks
     ├── update-readme.js  # Updates README stats
+    ├── update-logs.js    # Updates LOGS.md
     ├── utils.js          # Shared utility functions
-    ├── types.js          # JSDoc type definitions
-    └── test.js           # Test all scripts
+    └── types.js          # JSDoc type definitions
 ```
 
 ## 🎯 The Rules
@@ -105,9 +109,28 @@ node scripts/log-exercise.js
 ### No More Thinking!
 The script handles everything:
 - ✅ Adds exercise entry if not logged
+- ✅ Prompts for optional Strava activity embed
 - ✅ Creates empty commit if already logged
 - ✅ Always lets you push
 - ✅ Meaningful commit messages
+
+### Adding Strava Activities
+
+**During `npm run log`:**
+```bash
+💡 Optional: Add your Strava activity
+🏃 Enter your Strava activity ID (or press Enter to skip): 15875620162
+```
+
+**Or separately:**
+```bash
+npm run add-strava
+```
+
+**How to get Strava Activity ID:**
+1. Open your activity on Strava
+2. Look at the URL: `https://www.strava.com/activities/15875620162`
+3. The number at the end is your activity ID
 
 ## 🔧 Customization
 
@@ -134,6 +157,12 @@ A: You'll get a reminder issue. Push when you see it!
 
 **Q: Can I push without jogging?**
 A: That's cheating yourself, not the system 😉
+
+**Q: How do I add my Strava activity?**
+A: When running `npm run log`, it will prompt you for the activity ID. Just paste it!
+
+**Q: Where are the Strava embeds shown?**
+A: In `logs/LOGS.md` under the "Strava Activities" section, organized by date
 
 ## 🏆 Motivation
 
@@ -169,9 +198,11 @@ npm run type-check
 npm test
 
 # Run individual scripts
-node scripts/add-exercise.js
+node scripts/log-exercise.js
+node scripts/add-strava-embed.js
 node scripts/update-streak.js
 node scripts/update-readme.js
+node scripts/update-logs.js
 ```
 
 ## 🐛 Troubleshooting

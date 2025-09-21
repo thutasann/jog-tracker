@@ -5,8 +5,6 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { loadJSON } from './utils.js';
 
-/** @typedef {import('./types.js').Exercise} Exercise */
-/** @typedef {import('./types.js').ExerciseData} ExerciseData */
 /** @typedef {import('./types.js').StreakData} StreakData */
 /** @typedef {import('./types.js').Milestone} Milestone */
 
@@ -30,30 +28,6 @@ function updateStats(readme, streak) {
     /```\n🔥 Current Streak:[\s\S]*?```/,
     stats
   );
-}
-
-/**
- * Update exercise log table
- * @param {string} readme - Current README content
- * @param {Exercise[]} exercises - Array of exercises
- * @returns {string} Updated README content
- */
-function updateLog(readme, exercises) {
-  // Get last 10 exercises
-  const recent = exercises
-    .sort((a, b) => b.date.localeCompare(a.date))
-    .slice(0, 10);
-
-  const logRows = recent
-    .map(e => `| ${e.date} | ✅ Jogged |`)
-    .join('\n');
-
-  if (logRows) {
-    const pattern = /([\|] Date [\|] Status [\|]\n[\|]------[\|]--------[\|]\n)([\s\S]*?)(\n\n##)/;
-    return readme.replace(pattern, `$1${logRows}$3`);
-  }
-
-  return readme;
 }
 
 /**
@@ -87,7 +61,6 @@ function updateMilestones(readme, currentStreak) {
 function main() {
   // Define file paths
   const streakPath = join(__dirname, '..', 'streak.json');
-  const exercisesPath = join(__dirname, '..', 'exercises.json');
   const readmePath = join(__dirname, '..', 'README.md');
 
   // Load data
@@ -98,16 +71,11 @@ function main() {
     last_updated: 'Never'
   });
 
-  /** @type {ExerciseData} */
-  const exerciseData = loadJSON(exercisesPath, { exercises: [] });
-  const exercises = exerciseData.exercises || [];
-
   // Read README
   let readme = readFileSync(readmePath, 'utf8');
 
   // Update sections
   readme = updateStats(readme, streak);
-  readme = updateLog(readme, exercises);
   readme = updateMilestones(readme, streak.current_streak);
 
   // Save updated README
