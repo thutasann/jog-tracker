@@ -8,6 +8,7 @@
 
 ## Strava Activities
 
+
 ### 2025-09-20
 [View on Strava](https://www.strava.com/activities/15875620162)
 

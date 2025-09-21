@@ -1,223 +1,90 @@
 # 🏃 How This Exercise Streak Tracker Works
 
-## 📖 Overview
-
-This is the world's simplest exercise tracker - you just push to GitHub after jogging, and everything else is automated!
-
 ## 🚀 Quick Start
 
 ### 1. Initial Setup (One time only)
-- Fork/clone this repo
-- Run `npm install` to install type definitions
-- Push to GitHub
+```bash
+git clone <your-repo>
+npm install
+```
 
-### 2. Daily Routine - SUPER SIMPLE!
-
-After jogging, just run ONE command:
+### 2. Daily Routine
+After jogging, just run:
 ```bash
 npm run log
 ```
 
-That's it! This will:
-1. **Prompt for date** (defaults to today - just press Enter)
-2. **Prompt for optional Strava activity ID** (press Enter to skip)
-3. Automatically:
-   - Log exercise in exercises.json
-   - Update streak statistics in streak.json
-   - Update README.md with current streak stats
-   - Add entry to logs/LOGS.md table
-   - Add Strava embed if ID provided
-   - Commit all changes ("🏃 Jogged on YYYY-MM-DD")
-   - Push to GitHub automatically
-   - Create empty commit if already logged (push multiple times!)
+**That's it!** You'll be prompted for:
+- Date (press Enter for today)
+- Strava activity ID (press Enter to skip)
 
-## 🤖 What Happens Automatically
+Everything else happens automatically - files update, commit, and push to GitHub.
 
-### When You Run `npm run log` (Everything Automated)
-1. **Exercise Logging** - Adds entry to exercises.json for the date you specify
-2. **Streak Calculation** - Updates streak.json with current and total stats
-3. **README Update** - Updates stats and milestones in README.md
-4. **Logs Update** - Updates exercise table and adds Strava embeds in logs/LOGS.md
-5. **Git Commit** - Creates meaningful commit with exercise date
-6. **Auto Push** - Automatically pushes to GitHub
+## 📁 What Gets Updated
 
-### GitHub Actions (Daily Reminder Only)
-1. **Daily Check** - At 8 PM UTC, GitHub checks if you pushed today
-2. **Reminder Issue** - Creates a motivational issue if you didn't push:
-   - Random funny titles
-   - Developer-specific excuses
-   - Your current streak status
-   - Guilt-trip messages
-3. **No File Updates** - GitHub Actions NEVER modifies any files (all updates are local)
+| File | What it tracks |
+|------|---------------|
+| `exercises.json` | All exercise dates |
+| `streak.json` | Current streak & total days |
+| `README.md` | Live stats & milestones |
+| `logs/LOGS.md` | Exercise table & Strava embeds |
 
-## 📁 File Structure
+## 🔔 GitHub Actions
 
-```
-exercise_streak/
-├── README.md              # Your streak dashboard with live stats
-├── exercises.json         # Auto-updated exercise log
-├── streak.json           # Current streak data
-├── package.json          # Node.js project configuration
-├── tsconfig.json         # TypeScript config for type checking
-├── logs/
-│   └── LOGS.md           # Detailed exercise log with Strava embeds
-├── .github/workflows/
-│   └── daily-check.yml   # Creates reminder if no push (8 PM UTC)
-└── scripts/
-    ├── log.js            # Main script that handles everything
-    ├── utils.js          # Shared utility functions
-    ├── types.js          # JSDoc type definitions
-    └── setup-alias.sh    # Optional: Setup 'jog' alias
-```
+Daily at 8 PM UTC, if you haven't pushed:
+- Creates a reminder issue with funny titles
+- Shows your current streak
+- Motivates you to keep going
 
-## 🎯 The Rules
+## 💡 Tips & Tricks
 
-1. **Local Control** - You control when and how to log exercises
-2. **Flexible Dating** - Can log for any date (today by default)
-3. **Streak Tolerance** - Allows 1 day gap (won't break immediately)
-4. **Daily Reminder** - Issues created if you don't push by 8 PM UTC
-5. **Optional Strava** - Add activity embeds or skip them
-
-## 💡 Pro Tips
-
-### The One Command You Need
-```bash
-npm run log
-```
-
-### What It Does
-The script handles everything automatically:
-- ✅ Prompts for date (defaults to today)
-- ✅ Prompts for optional Strava activity ID
-- ✅ Logs exercise to exercises.json
-- ✅ Updates all files (README, LOGS, streak.json)
-- ✅ Creates meaningful commit
-- ✅ Pushes to GitHub automatically
-- ✅ Creates empty commit if already logged for that date
+### Getting Strava Activity ID
+1. Open activity: `https://www.strava.com/activities/15875620162`
+2. The number at the end is your ID: `15875620162`
+3. Paste when prompted
 
 ### Advanced Usage
-
-**Log for a specific date:**
 ```bash
 npm run log
-# When prompted: 2025-09-19
+# Date: 2025-09-19  (backdate entry)
+# Strava ID: 15875620162  (add activity)
 ```
 
-**Add Strava activity:**
-```bash
-npm run log
-# When prompted for Strava ID: 15875620162
-```
-
-The script now automatically pushes to GitHub, no need to confirm!
-
-### Adding Strava Activities
-
-**During `npm run log`:**
-```bash
-💡 Strava activity ID (press Enter to skip): 15875620162
-```
-
-**How to get Strava Activity ID:**
-1. Open your activity on Strava
-2. Look at the URL: `https://www.strava.com/activities/15875620162`
-3. The number at the end is your activity ID
-
-Strava embeds will be added to `logs/LOGS.md` under the specific date.
-
-## 🔧 Customization
-
-### Change Reminder Time
-Edit `.github/workflows/daily-check.yml`:
-```yaml
-- cron: '0 20 * * *'  # Change this (UTC time)
-```
-
-### Modify Messages
-- Reminder messages: Edit arrays in `daily-check.yml`
-- Commit messages: Edit in `auto-jog.yml`
+### Multiple Jogs per Day
+Just run `npm run log` again - it creates empty commits!
 
 ## ❓ FAQ
 
-**Q: What if I jog twice in one day?**
-A: The script allows empty commits, so you can push multiple times!
+**Q: What if I forget to log?**  
+A: You'll get a reminder issue. Just run `npm run log` when you see it.
 
-**Q: Can I backdate exercises?**
-A: Yes! When prompted for date, enter any date in YYYY-MM-DD format
+**Q: Can I backdate?**  
+A: Yes! Enter any date in YYYY-MM-DD format when prompted.
 
-**Q: What if I jog but forget to push?**
-A: You'll get a reminder issue. Run `npm run log` when you see it!
-
-**Q: Can I push without jogging?**
-A: That's cheating yourself, not the system 😉
-
-**Q: How do I add my Strava activity?**
-A: When running `npm run log`, paste the activity ID when prompted
-
-**Q: Where are the Strava embeds shown?**
-A: In `logs/LOGS.md` under the "Strava Activities" section, organized by date
-
-**Q: What if there's a merge conflict?**
-A: This shouldn't happen anymore! All updates are local now
+**Q: Where do Strava embeds appear?**  
+A: In `logs/LOGS.md` with a clickable link to the activity.
 
 ## 🏆 Motivation
 
-Remember why you started:
-> "After 3 years of coding and heart rate issues..."
+> "Your body is not a machine that breaks down with use. It's a system that breaks down from lack of use."
 
-Your health is your most important feature. Don't let it become legacy code!
+After 3 years of non-stop coding and developing heart rate issues, I learned that health isn't a nice-to-have feature - it's the core infrastructure everything else runs on.
 
-## 🛠️ Development
+**Remember:**
+- Code can be refactored tomorrow, your health cannot
+- A healthy developer ships better code
+- Exercise is debugging for your body
+- Your future self will thank you
 
-### Tech Stack
-- **Node.js 20+** with ES Modules
-- **JSDoc** for type annotations
-- **TypeScript** for type checking (dev only)
-- **GitHub Actions** for automation
+Keep that streak alive! 🔥
 
-### Type Safety
-All scripts use `@ts-check` and JSDoc annotations for type safety:
-```javascript
-// @ts-check
-/** @typedef {import('./types.js').Exercise} Exercise */
-```
+## 🛠️ Technical Details
 
-### Running Scripts Locally
-```bash
-# Install dependencies
-npm install
-
-# Run type checking
-npm run type-check
-
-# Test all scripts
-npm test
-
-# Run the main logging script
-node scripts/log.js
-```
-
-## 🐛 Troubleshooting
-
-**Actions not running?**
-- Check Actions are enabled in repo settings
-- Verify you're pushing to main/master branch
-- Check Node.js version in workflows (requires 20+)
-
-**Streak not updating?**
-- Wait a few minutes for Actions to complete
-- Check Actions tab for any errors
-- Run `npm test` locally to debug
-
-**No reminder issues?**
-- Check if you have issues enabled
-- Verify the schedule in daily-check.yml (8 PM UTC)
-- Check permissions in workflow files
-
-**Merge conflicts?**
-- This should no longer happen with the new local-only approach
-- If you still get conflicts, ensure no GitHub Actions are modifying files
+- **Node.js 20+** with ES modules
+- **Type-safe** with JSDoc + TypeScript checking
+- **GitHub Actions** for daily reminders
+- **No dependencies** except dev tools
 
 ---
 
-**Just remember: `npm run log` = Everything done locally. It's that simple!** 🏃‍♂️💻
+**Just `npm run log` and keep moving!** 🏃‍♂️💻

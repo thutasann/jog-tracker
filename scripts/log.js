@@ -235,9 +235,11 @@ async function main() {
     execSync('git add -A', { stdio: 'inherit' });
     
     const commitMessage = `🏃 Jogged on ${date}`;
-    const commitResult = exists 
-      ? execSync(`git commit --allow-empty -m "${commitMessage}"`, { stdio: 'pipe' })
-      : execSync(`git commit -m "${commitMessage}"`, { stdio: 'pipe' });
+    if (exists) {
+      execSync(`git commit --allow-empty -m "${commitMessage}"`, { stdio: 'pipe' });
+    } else {
+      execSync(`git commit -m "${commitMessage}"`, { stdio: 'pipe' });
+    }
     
     console.log('✅ Committed changes');
     
