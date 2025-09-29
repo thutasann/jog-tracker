@@ -4,6 +4,7 @@
 
 | Date | Status |
 |------|--------|
+| 2025-09-29 | ✅ Jogged |
 | 2025-09-28 | ✅ Jogged |
 | 2025-09-27 | ✅ Jogged |
 | 2025-09-25 | ✅ Jogged |
@@ -22,6 +23,14 @@
 
 
 
+
+
+### 2025-09-29
+[View on Strava](https://www.strava.com/activities/15974941394)
+
+```.html
+<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="15974941394" data-style="standard"></div><script src="https://strava-embeds.com/embed.js"></script>
+```
 
 ### 2025-09-28
 [View on Strava](https://www.strava.com/activities/15960054696)
