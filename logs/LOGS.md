@@ -20,6 +20,7 @@
 | 2025-09-22 | ✅ Jogged |
 | 2025-09-21 | ✅ Jogged |
 | 2025-09-20 | ✅ Jogged |
+| 2024-10-07 | ✅ Jogged |
 
 ## Strava Activities
 
@@ -38,6 +39,14 @@
 
 
 
+
+
+### 2024-10-07
+[View on Strava](https://www.strava.com/activities/16062685128)
+
+```.html
+<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="16062685128" data-style="standard"></div><script src="https://strava-embeds.com/embed.js"></script>
+```
 
 ### 2025-10-06
 [View on Strava](https://www.strava.com/activities/16052060981)

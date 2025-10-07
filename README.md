@@ -4,7 +4,7 @@
 
 ```
 🔥 Current Streak: 16 days
-🏃 Total Jogging Days: 16
+🏃 Total Jogging Days: 17
 📅 Last Jog: 2025-10-06
 ```
 
