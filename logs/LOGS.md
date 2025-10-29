@@ -4,6 +4,7 @@
 
 | Date | Status |
 |------|--------|
+| 2025-10-29 | ✅ Jogged |
 | 2025-10-28 | ✅ Jogged |
 | 2025-10-26 | ✅ Jogged |
 | 2025-10-24 | ✅ Jogged |
@@ -23,7 +24,6 @@
 | 2025-10-06 | ✅ Jogged |
 | 2025-10-05 | ✅ Jogged |
 | 2025-10-04 | ✅ Jogged |
-| 2025-10-03 | ✅ Jogged |
 
 ## Strava Activities
 
@@ -58,6 +58,14 @@
 
 
 
+
+
+### 2025-10-29
+[View on Strava](https://www.strava.com/activities/16292224140)
+
+```.html
+<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="16292224140" data-style="standard"></div><script src="https://strava-embeds.com/embed.js"></script>
+```
 
 ### 2025-10-28
 [View on Strava](https://www.strava.com/activities/16281434498)
