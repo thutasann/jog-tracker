@@ -3,21 +3,21 @@
 ## 📊 Current Stats
 
 ```
-🔥 Current Streak: 57 days
-🏃 Total Running Days: 214
-📅 Last Run: 2026-07-26
-📆 Today: 2026-07-26
+🔥 Current Streak: 58 days
+🏃 Total Running Days: 215
+📅 Last Run: 2026-07-27
+📆 Today: 2026-07-27
 ```
 
 ## 📈 Streak History
 
 ```
 🏆 Longest Streak: 14 days
-📊 Average Streak: 5.0 days
+📊 Average Streak: 5.1 days
 🔥 Total Streaks: 36
 📅 First Run: 2025-03-03
-⏱️  Days Active: 214 days
-💯 Consistency: 41.9% (214/511 days)
+⏱️  Days Active: 215 days
+💯 Consistency: 42.0% (215/512 days)
 ```
 
 ## 📅 This Month
@@ -29,7 +29,7 @@ Su Mo Tu We Th Fr Sa
 +5 +6 +7 +8 +9 10 +11 
 +12 +13 +14 +15 16 +17 +18 
 +19 +20 +21 +22 23 +24 +25 
-*26 27 28 29 30 31 
++26 *27 28 29 30 31 
 
 Legend: *Today+Ran  +Ran  [Today]
 ```
@@ -37,10 +37,10 @@ Legend: *Today+Ran  +Ran  [Today]
 ## 📊 Last 4 Weeks
 
 ```
-Week 6/28-7/4     ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 7 runs
-Week 7/5-7/11     ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓     6 runs
-Week 7/12-7/18    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓     6 runs
-Week 7/19-7/25    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓     6 runs
+Week 6/29-7/5     ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 7 runs
+Week 7/6-7/12     ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓     6 runs
+Week 7/13-7/19    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓     6 runs
+Week 7/20-7/26    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓     6 runs
 ```
 
 ## 📊 Last 6 Months
@@ -51,14 +51,14 @@ Mar 2026  ███████████████████████�
 Apr 2026  ██████████████████████████████████████████████████ 26 runs
 May 2026  ████████████████████████████████████████████████ 25 runs
 Jun 2026  ████████████████████████████████████████████████ 25 runs
-Jul 2026  ████████████████████████████████████████████ 23 runs
+Jul 2026  ██████████████████████████████████████████████ 24 runs
 ```
 
 ## 📊 Day of Week Breakdown
 
 ```
 Sunday     ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓   34 runs
-Monday     ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓   35 runs
+Monday     ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  36 runs
 Tuesday    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓         27 runs
 Wednesday  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓      31 runs
 Thursday   ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓      31 runs
