@@ -243,12 +243,13 @@ export const exerciseDates = [
   "2026-08-17",
   "2026-08-18",
   "2026-08-19",
+  "2026-08-20",
   "2026-08-21"
 ] as const;
 
 export const streak = {
-  "current_streak": 82,
-  "total_days": 239,
+  "current_streak": 83,
+  "total_days": 240,
   "last_updated": "2026-08-21"
 } as const;
 
